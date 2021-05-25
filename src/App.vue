@@ -1,26 +1,46 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <component :is="layout" :class="getTheme">
+    <RouterView :key="$route.fullPath" />
+  </component>
 </template>
 
+
+
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { useRoute } from "vue-router";
+import { shallowRef, watch } from "vue";
+import { themeMethods, themeComputed } from "@/state/helpers";
+
+import AppLayoutDefault from "@/layouts/Default";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
+  setup() {
+    const layout = shallowRef(AppLayoutDefault);
+    const route = useRoute();
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+    watch(
+      () => route.meta,
+      async (meta) => {
+        try {
+          const component = await import(`@/layouts/${meta.layout}.vue`);
+          layout.value = component?.default || AppLayoutDefault;
+        } catch (e) {
+          layout.value = AppLayoutDefault;
+        }
+        return { layout };
+      },
+      { immediate: true }
+    );
+    return { layout };
+  },
+  computed: {
+    ...themeComputed,
+  },
+  methods: {
+    ...themeMethods,
+  },
+  beforeMount() {
+    this.initTheme();
+  },
+};
+</script>
