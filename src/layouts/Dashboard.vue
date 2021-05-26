@@ -25,6 +25,6 @@ export default {
 
 <style lang="scss">
 #app {
-  @apply min-h-screen grid grid-cols-1 lg:grid-cols-1 bg-gray-100;
+  @apply min-h-screen bg-gray-100;
 }
 </style>

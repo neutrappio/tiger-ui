@@ -1,18 +1,30 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-const publicRoutes = [
+/**
+ * Public Routes
+ */
+
+const ErrorPages = [
   {
-    path: '/',
-    name: 'Home',
-    component: () => import('@/modules/index/pages/Index.vue'),
-    meta: {
-      layout: 'Default',
-      menu: 'Member'
-    }
+    name: '404',
+    path: '/404',
+    component: () => import('@/modules/errors/pages/Page404.vue'),
   },
+  { path: '/:pathMatch(.*)*', redirect: '/404' },
 ]
 
 
+const publicRoutes = [
+  {
+    path: '/',
+    redirect: "/dashboard"
+  },
+  ...ErrorPages
+]
+
+/**
+ * Auth Routes
+ */
 const authRoutes = [
   {
     path: '/auth/login',
@@ -26,7 +38,9 @@ const authRoutes = [
   { path: "/auth/:pathMatch(.*)*", redirect: "/auth/login" },
 ]
 
-
+/**
+ * Private routes
+ */
 const privateRoutes =
   [
     {
@@ -100,10 +114,19 @@ const privateRoutes =
   ].map(route => { return { ...route, meta: { ...route.meta, private: true } } });
 
 
+
+/**
+ * Routes Export
+ */
+
 export const routes = [...publicRoutes, ...privateRoutes, ...authRoutes].map(_route => {
   return _route;
 });
 
+
+/**
+ * Router Export
+ */
 export const router = createRouter({
   history: createWebHashHistory(),
   base: process.env.BASE_URL,
