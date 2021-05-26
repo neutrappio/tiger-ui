@@ -1,6 +1,6 @@
 <template>
   <Disclosure as="nav" class="bg-gray-800" v-slot="{ open }">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="navbar">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center">
           <div class="flex-shrink-0">
@@ -12,8 +12,8 @@
           </div>
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
-              <template v-for="(item, itemIdx) in navigation" :key="item.url">
-                <template v-if="itemIdx === 0">
+              <template v-for="item in navigation" :key="item.url">
+                <template v-if="item.url === getCurrentUrl">
                   <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                   <router-link
                     :to="item.url"
@@ -21,11 +21,11 @@
                     >{{ item.title }}</router-link
                   >
                 </template>
-                <a
+                <router-link
                   v-else
                   :to="item.url"
                   class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >{{ item.title }}</a
+                  >{{ item.title }}</router-link
                 >
               </template>
             </div>
@@ -98,8 +98,8 @@
 
     <DisclosurePanel class="md:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-        <template v-for="(item, itemIdx) in navigation" :key="item">
-          <template v-if="itemIdx === 0">
+        <template v-for="item in navigation" :key="item">
+          <template v-if="item.url === getCurrentUrl">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <router-link
               :to="item.url"
@@ -151,6 +151,8 @@
 
 <script>
 import { ref } from "vue";
+import { routes } from "@/router";
+
 import {
   Disclosure,
   DisclosureButton,
@@ -168,26 +170,30 @@ import {
   UserCircleIcon,
 } from "@heroicons/vue/outline";
 
-const navigation = [
-  {
-    title: "Dashboard",
-    url: "/dashboard",
-  },
-];
-const profile = [
-  {
-    title: "Your Profile",
-    url: "/account/profile",
-  },
-  {
-    title: "Settings",
-    url: "/account/settings",
-  },
-  {
-    title: "Sign out",
-    url: "/auth/logout",
-  },
-];
+/**
+ * Get Naviagation/Profile menu
+ */
+const privateRoutes = routes.filter(
+  (route) => route.meta && route.meta.private
+);
+
+const navigation = privateRoutes
+  .filter((route) => route.meta && route.meta.navigation)
+  .map((route) => {
+    return {
+      title: (route.meta && route.meta.title) || route.name,
+      url: route.path,
+    };
+  });
+
+const profile = privateRoutes
+  .filter((route) => route.meta && route.meta.profile)
+  .map((route) => {
+    return {
+      title: (route.meta && route.meta.title) || route.name,
+      url: route.path,
+    };
+  });
 
 export default {
   components: {
@@ -212,5 +218,20 @@ export default {
       open,
     };
   },
+  computed: {
+    getCurrentUrl() {
+      return this.$route.path;
+    },
+  },
 };
 </script>
+
+<style lang="scss" scoped>
+.navbar {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+
+  a:hover {
+    @apply cursor-pointer;
+  }
+}
+</style>

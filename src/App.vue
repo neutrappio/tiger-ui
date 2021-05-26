@@ -1,5 +1,5 @@
 <template>
-  <component :is="layout" :class="getTheme">
+  <component :is="layout">
     <RouterView :key="$route.fullPath" :title="getTitle()" />
   </component>
 </template>
