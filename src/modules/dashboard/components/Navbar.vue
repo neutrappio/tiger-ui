@@ -4,11 +4,13 @@
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center">
           <div class="flex-shrink-0">
-            <img
+            <router-link to="/dashboard">
+              <img
               class="h-12 w-12 fill-current text-white"
               src="../../../assets/images/logo/logo.svg"
               alt="Tiger"
             />
+            </router-link>
           </div>
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
