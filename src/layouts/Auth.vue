@@ -22,12 +22,8 @@
 </template>
 
 <script>
-import Splash from "@/modules/auth/components/Splash.vue";
-
 export default {
-  components: {
-    Splash,
-  },
+  components: {},
 };
 </script>
 

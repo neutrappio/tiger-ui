@@ -1,5 +1,5 @@
 {
-  "name": "tiger_ui",
+  "name": "tiger",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,8 @@
     "dev": "vue-cli-service serve"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.2.0",
+    "@heroicons/vue": "^1.0.1",
     "@tailwindcss/postcss7-compat": "^2.1.2",
     "autoprefixer": "^9.8.6",
     "core-js": "^3.6.5",

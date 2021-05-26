@@ -16,25 +16,10 @@ const publicRoutes = [
 const authRoutes = [
   {
     path: '/auth/login',
-    name: 'Login',
+    name: 'login',
     component: () => import('@/modules/auth/pages/Login.vue'),
     meta: {
-      layout: 'Auth'
-    }
-  },
-  {
-    path: '/auth/register',
-    name: 'Register',
-    component: () => import('@/modules/auth/pages/Register.vue'),
-    meta: {
-      layout: 'Auth'
-    }
-  },
-  {
-    path: '/auth/confirmation',
-    name: 'Confirmation',
-    component: () => import('@/modules/auth/pages/Confirmation.vue'),
-    meta: {
+      title: 'Login',
       layout: 'Auth'
     }
   },
@@ -48,15 +33,17 @@ const privateRoutes = [
     name: 'dashboard',
     component: () => import('@/modules/dashboard/pages/Dashboard.vue'),
     meta: {
-      layout: 'HeaderLayout'
+      title: 'Dashboard',
+      layout: 'Dashboard'
     }
   },
   {
     path: '/account/settings',
-    name: 'Account Settings',
+    name: 'account-settings',
     component: () => import('@/modules/account/pages/Settings.vue'),
     meta: {
-      layout: 'HeaderLayout'
+      title: 'Account Settings',
+      layout: 'Dashboard'
     }
   }
 ]
