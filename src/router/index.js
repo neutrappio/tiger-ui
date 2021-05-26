@@ -36,10 +36,47 @@ const privateRoutes =
       meta: {
         title: 'Dashboard',
         layout: 'Dashboard',
+        icon: "HomeIcon",
         navigation: true
       }
     },
     ...[
+      {
+        name: 'services',
+        path: "/services",
+        component: () => import('@/modules/dashboard/pages/Dashboard.vue'),
+        meta: {
+          title: "Services",
+          icon: "DatabaseIcon"
+        },
+      },
+      {
+        name: 'nodes',
+        path: "/nodes",
+        component: () => import('@/modules/dashboard/pages/Dashboard.vue'),
+        meta: {
+          title: "Nodes",
+          icon: "ServerIcon"
+        },
+      },
+      {
+        name: 'regions',
+        path: "/regions",
+        component: () => import('@/modules/dashboard/pages/Dashboard.vue'),
+        meta: {
+          title: "Regions",
+          icon: "GlobeIcon"
+        },
+      },
+      {
+        name: 'eggs',
+        path: "/eggs",
+        component: () => import('@/modules/dashboard/pages/Dashboard.vue'),
+        meta: {
+          title: "Eggs",
+          icon: "BeakerIcon"
+        },
+      },
       {
         name: 'account-settings',
         path: '/account/settings',
@@ -49,30 +86,6 @@ const privateRoutes =
           navigation: false,
           profile: true,
         }
-      },
-      {
-        name: 'nodes',
-        path: "/nodes",
-        component: () => import('@/modules/dashboard/pages/Dashboard.vue'),
-        meta: {
-          title: "Nodes",
-        },
-      },
-      {
-        name: 'services',
-        path: "/services",
-        component: () => import('@/modules/dashboard/pages/Dashboard.vue'),
-        meta: {
-          title: "Services",
-        },
-      },
-      {
-        name: 'eggs',
-        path: "/eggs",
-        component: () => import('@/modules/dashboard/pages/Dashboard.vue'),
-        meta: {
-          title: "Eggs",
-        },
       },
     ].map(route => {
       route.path = `/app${route.path}`;
