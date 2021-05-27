@@ -19,7 +19,7 @@ const vueApp = createApp(App)
     .use(router)
 
 /**
- * HeroIcons
+ * HeroIcons + Plugins
  */
 Object.keys(components).forEach(cpm => {
     vueApp.component(cpm, components[cpm])

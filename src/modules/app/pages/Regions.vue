@@ -1,0 +1,1 @@
+<template>Regions list</template>

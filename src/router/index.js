@@ -46,7 +46,7 @@ const privateRoutes =
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: () => import('@/modules/dashboard/pages/Dashboard.vue'),
+      component: () => import('@/modules/app/pages/Dashboard.vue'),
       meta: {
         title: 'Dashboard',
         layout: 'Dashboard',
@@ -58,7 +58,7 @@ const privateRoutes =
       {
         name: 'services',
         path: "/services",
-        component: () => import('@/modules/dashboard/pages/Dashboard.vue'),
+        component: () => import('@/modules/app/pages/Services.vue'),
         meta: {
           title: "Services",
           icon: "DatabaseIcon"
@@ -67,7 +67,7 @@ const privateRoutes =
       {
         name: 'nodes',
         path: "/nodes",
-        component: () => import('@/modules/dashboard/pages/Dashboard.vue'),
+        component: () => import('@/modules/app/pages/Nodes.vue'),
         meta: {
           title: "Nodes",
           icon: "ServerIcon"
@@ -76,7 +76,7 @@ const privateRoutes =
       {
         name: 'regions',
         path: "/regions",
-        component: () => import('@/modules/dashboard/pages/Dashboard.vue'),
+        component: () => import('@/modules/app/pages/Regions.vue'),
         meta: {
           title: "Regions",
           icon: "GlobeIcon"
@@ -85,7 +85,7 @@ const privateRoutes =
       {
         name: 'eggs',
         path: "/eggs",
-        component: () => import('@/modules/dashboard/pages/Dashboard.vue'),
+        component: () => import('@/modules/app/pages/Eggs.vue'),
         meta: {
           title: "Eggs",
           icon: "BeakerIcon"

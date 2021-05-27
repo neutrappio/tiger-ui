@@ -1,0 +1,1 @@
+<template>Eggs list</template>
