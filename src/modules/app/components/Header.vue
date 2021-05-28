@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import NavbarComponent from "@/modules/dashboard/components/Navbar.vue";
+import NavbarComponent from "@/modules/app/components/Navbar.vue";
 
 export default {
   components: {

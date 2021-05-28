@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import HeaderComponent from "@/modules/dashboard/components/Header.vue";
+import HeaderComponent from "@/modules/app/components/Header.vue";
 
 export default {
   components: {
