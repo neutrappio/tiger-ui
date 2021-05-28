@@ -23,15 +23,15 @@ export default {
       return [
         {
           name: "FR XL VPS",
-          host: "fr-xl-vps.neutr.app",
+          host: "fr-xl-vps.host.vps",
           ip: "10.0.0.1",
           port: 22,
           region: "Europe",
           status: "Offline",
         },
         {
-          name: "FR XL VPS",
-          host: "fr-xl-vps.neutr.app",
+          name: "US SM VPS",
+          host: "fr-xl-vps.host.vps",
           ip: "10.0.0.2",
           port: 22,
           region: "Europe",

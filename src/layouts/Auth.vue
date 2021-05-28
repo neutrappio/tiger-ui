@@ -1,6 +1,6 @@
 <template>
   <main id="auth">
-    <div class="w-full space-y-8">
+    <div class="space-y-8">
       <div id="aform">
         <div class="content">
           <img
@@ -12,7 +12,7 @@
             Sign in to your account
           </h2>
           <p class="mt-2 text-center text-sm text-gray-600">
-            We recommend that you to sign-in using your own device.
+            We recommend that you sign-in using your own device.
           </p>
           <slot />
         </div>
