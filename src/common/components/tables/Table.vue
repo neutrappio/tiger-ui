@@ -30,7 +30,7 @@
                   class="px-6 py-4 flex-grow"
                   :class="col.rowclass"
                 >
-                  <span class="md:hidden tiger-c-title"
+                  <span v-if="col.title" class="md:hidden tiger-c-title"
                     >{{ col.title }} : <br
                   /></span>
                   <span class="tiger-r-val" v-html="row[col.name]"> </span>

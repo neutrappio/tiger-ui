@@ -2,12 +2,12 @@
   <widget class="widget">
     <div class="wbody">
       <slot name="flex w-full">
-        <div class="icon p-3 text-white rounded-md w-14 h-14" :class="color">
-          <component :is="icon" class="w-8 h-8" />
-        </div>
         <div class="labels">
           <p class="font-semibold text-gray-500">{{ label }}</p>
           <h1 class="text-2xl font-bold text-gray-800">{{ counter }}</h1>
+        </div>
+        <div class="icon" :class="color">
+          <component :is="icon" class="w-8 h-8" />
         </div>
       </slot>
     </div>
@@ -35,7 +35,7 @@ export default {
     },
     color: {
       type: String,
-      default: "bg-light",
+      default: "text-light",
     },
   },
 };
@@ -48,6 +48,7 @@ export default {
 
   .wbody {
     @apply flex space-x-4 items-center;
+    @apply justify-between;
   }
 }
 </style>

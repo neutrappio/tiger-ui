@@ -12,6 +12,6 @@ export default {};
 .widget {
   @apply rounded-md;
   @apply bg-white border border-gray-100 drop-shadow-sm;
-  @apply p-6;
+  @apply p-4;
 }
 </style>
