@@ -1,4 +1,5 @@
-# tiger_ui
+# 🎨 Tiger Dashboard UI
+
 
 ## Project setup
 ```
