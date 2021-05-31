@@ -5,38 +5,44 @@
       <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded">
           <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50 hidden md:table-header-group">
-              <tr>
-                <th
-                  v-for="col in getColumns"
-                  :key="col"
-                  scope="col"
-                  class="px-6 py-3 tiger-c-title"
-                  :class="col.class"
-                >
-                  {{ col.title }}
-                </th>
-              </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-              <tr
-                v-for="row in rows"
-                :key="row.id || row"
-                class="flex flex-wrap md:table-row w-full"
-              >
-                <td
-                  v-for="col in getColumns"
-                  :key="col.id || col"
-                  class="px-6 py-4 flex-grow"
-                  :class="col.rowclass"
-                >
-                  <span v-if="col.title" class="md:hidden tiger-c-title"
-                    >{{ col.title }} : <br
-                  /></span>
-                  <span class="tiger-r-val" v-html="row[col.name]"> </span>
-                </td>
-              </tr>
-            </tbody>
+            <slot name="thead">
+              <thead class="bg-gray-50 hidden md:table-header-group">
+                <tr>
+                  <th
+                    v-for="col in getColumns"
+                    :key="col"
+                    scope="col"
+                    class="px-6 py-3 tiger-c-title"
+                    :class="col.class"
+                  >
+                    {{ col.title }}
+                  </th>
+                </tr>
+              </thead>
+            </slot>
+            <slot name="tbody">
+              <tbody class="bg-white divide-y divide-gray-200">
+                <slot name="rows">
+                  <tr
+                    v-for="row in rows"
+                    :key="row.id || row"
+                    class="flex flex-wrap md:table-row w-full"
+                  >
+                    <td
+                      v-for="col in getColumns"
+                      :key="col.id || col"
+                      class="px-6 py-4 flex-grow"
+                      :class="col.rowclass"
+                    >
+                      <span v-if="col.title" class="md:hidden tiger-c-title"
+                        >{{ col.title }} : <br
+                      /></span>
+                      <span class="tiger-r-val" v-html="row[col.name]"> </span>
+                    </td>
+                  </tr>
+                </slot>
+              </tbody>
+            </slot>
           </table>
         </div>
       </div>
@@ -73,7 +79,7 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .tiger-table {
   .tiger-c-title {
     @apply text-left font-medium text-gray-500 capitalize tracking-wider;

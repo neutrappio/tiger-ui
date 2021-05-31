@@ -3,7 +3,7 @@
     <div class="wbody">
       <slot name="flex w-full">
         <div class="labels">
-          <p class="font-semibold text-gray-500">{{ label }}</p>
+          <p class="font-semibold text-gray-400">{{ label }}</p>
           <h1 class="text-2xl font-bold text-gray-800">{{ counter }}</h1>
         </div>
         <div class="icon" :class="color">

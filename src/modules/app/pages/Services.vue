@@ -1,15 +1,47 @@
 <template>
-  <table-component :columns="getCols" :rows="getRows" />
+  <table-component :columns="getColumns" :rows="getRows">
+    <template v-slot:rows>
+      <template v-for="row in getRows" :key="row">
+        <tr>
+          <td
+            class="td"
+            v-for="col in getColumns"
+            :key="col.id || col"
+            :class="col.rowclass"
+          >
+            <span v-if="col.title" class="md:hidden tiger-c-title"
+              >{{ col.title }} : <br
+            /></span>
+            <span class="tiger-r-val" v-html="row[col.name]"> </span>
+          </td>
+        </tr>
+        <tr>
+          <td class="td chart-cols" :colspan="getColumns.length">
+            <div class="charts">
+              <div class="cpu chart-col">
+                <ChartCPU :id="row.id" prefix="cpu" />
+              </div>
+              <div class="cpu chart-col">
+                <ChartRAM :id="row.id" prefix="ram" />
+              </div>
+            </div>
+          </td>
+        </tr>
+      </template>
+    </template>
+  </table-component>
 </template>
 
 
 <script>
 import TableComponent from "@/common/components/tables/Table.vue";
+import ChartCPU from "@/common/components/charts/ChartCPU.vue";
+import ChartRAM from "@/common/components/charts/ChartRAM.vue";
 
 export default {
-  components: { TableComponent },
+  components: { TableComponent, ChartCPU, ChartRAM },
   computed: {
-    getCols() {
+    getColumns() {
       return [
         { name: "name", title: "Name" },
         { name: "node", title: "Node" },
@@ -24,6 +56,7 @@ export default {
         .fill()
         .map((_, i) => {
           return {
+            id: `id${Math.random()}`.replace(".", ""),
             name: [
               "master-pg-server",
               "master-nginx",
@@ -52,6 +85,15 @@ export default {
   .tags {
     .tiger-r-val {
       @apply px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800;
+    }
+  }
+
+  .td {
+    @apply px-6 py-4 flex-grow;
+  }
+  .chart-cols {
+    .charts {
+      @apply grid grid-cols-1 md:grid-cols-2;
     }
   }
 }
